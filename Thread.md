@@ -55,6 +55,6 @@ Runnable r=()->{
 4. Waiting ->同上/线程等待另一个线程通知调度器一个条件时
 5. Timed waiting ->同上/几个方法有一个超时参数时，调用它们将导致线程进入计时等待状态
 6. Terminated ->run方法正常退出自然死亡/没有捕获的异常终止了run方法而意外死亡
-*可使用getState方法确定当前线程的状态*
-![Thread-status.jpg]
++ *可使用getState方法确定当前线程的状态*
+![Thread-status.jpg](https://github.com/127-ochan/JavaCoreNote/blob/master/Thread-status.jpg "线程状态图")
 
