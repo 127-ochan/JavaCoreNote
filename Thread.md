@@ -12,39 +12,39 @@
 + 多线程时线程个数往往多于CPU个数--多线程并发编程
 ## 创建线程:
 + Runnable函数式接口:
-		```
-			Runnable r=()->{}; //RunnableTest r=new RunnableTest();
-			Thread t=new Thread(r);
-			t.start();//不能直接调用Thread类或Runnable对象的run方法（t.run()/r.run(),直接调用并不启动新线程而是执行某一线程中的任务
-		```
+```
+Runnable r=()->{}; //RunnableTest r=new RunnableTest();
+Thread t=new Thread(r);
+t.start();//不能直接调用Thread类或Runnable对象的run方法（t.run()/r.run(),直接调用并不启动新线程而是执行某一线程中的任务
+```
 ## 中断线程:
 + 没有强制线程终止的方法，interrupt方法可以用来请求终止线程--置位中断状态
-		```
-			while(!Thread.currentThread().isInterrupted()&&more work to do){
-				...
-			}
-		```
+```
+while(!Thread.currentThread().isInterrupted()&&more work to do){
+	...
+}
+```
 + 不能在一个被阻塞的线程（sleep或wait）上调用interrupt方法，阻塞调用将会被InterruptedException异常中断
 + 同样，在中断状态被置位时调用sleep方法，它将清除这一状态并抛出InterruptedException异常--循环调用sleep时不会检测中断状态，而是捕获InterruptedException异常
-		```
-			Runnable r=()->{
-			try
-			{
-				while(!Thread.currentThread().isInterrupted()&&...)//while(...){Thread.sleep(delay);}
-				{
-					...
-				}
-			}
-			catch(InterruptedException e)
+```
+Runnable r=()->{
+	try
+	{
+		while(!Thread.currentThread().isInterrupted()&&...) //while(...){Thread.sleep(delay);}
 			{
 				...
 			}
-			finally
-			{
-				...
-			}
+	}
+	catch(InterruptedException e)
+		{
+			...
 		}
-		```
+	finally
+		{
+			...
+		}
+	}
+```
 + interrupt方法，向线程发送中断请求并将中断状态置位
 + interrupted方法是一个静态方法，检测当前线程是否被中断，并清除中断状态
 + isInterrupted是一个实例方法，仅检测不改变中断状态
