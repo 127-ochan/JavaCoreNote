@@ -61,10 +61,10 @@ Runnable r=()->{
 1. 线程优先级:MIN_PRIORITY(1)--NORM_PRIORITY(5)--MAX_PRIORITY(10),默认继承父线程的优先级:`setPriority(int newPriority)`
 2. 守护线程:`t.setDaemon(true)`将线程转换为守护线程，守护线程的唯一用途是为其他线程提供服务，当只剩下守护线程，就没必要继续运行程序，虚拟机退出（*守护线程不应该访问固有资源，因为可能随时中断*）
 3. 未捕获异常处理器: 线程的run方法不抛出任何受查异常。非受查异常会导致线程死亡，死亡前会将异常传递到用于未捕获异常的处理器。
-···
+```
 t.setUncaughtExceptionHandler()//为线程安装一个处理器，处理器必须属于实现Thread.UncaughtExceptionHandler接口的类
 Thread.setDefaultUncaughtExceptionHandler()//为所有线程安装一个默认的处理器
-···
+```
 + 如果不安装默认处理器。则默认处理器为空。如果不为独立的线程安装处理器，此时的处理器就是该线程的ThreadGroup对象；ThreadGroup类实现Thread.UncaughtExceptionHandler接口，其uncaughtException方法：父线程组->默认处理器->Throwable->System.err
 ## 同步：
 
